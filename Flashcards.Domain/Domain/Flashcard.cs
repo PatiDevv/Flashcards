@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Flashcards.Core.Domain
 {
@@ -15,13 +13,15 @@ namespace Flashcards.Core.Domain
         public Guid UserId { get; protected set; }
         public int FirstStateTimesAnswer { get; protected set; }
 
-        public Flashcard(string question, string answer)
+        public Flashcard(string question, string answer, Guid categoryId, Guid flashcardId)
         {
+            Id = flashcardId;
             SetQuestion(question);
             SetAnswer(answer);
             CreatedAt = DateTime.UtcNow;
             State = FlashcardState.FirstState;
             NextStateDate = DateTime.UtcNow;
+            CategoryId = categoryId;
         }
 
         public int CheckAndProcessAnswer(string answer)
