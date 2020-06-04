@@ -31,9 +31,9 @@ namespace Flashcards.Infrastructure.Services
             return wynik >= 0 ? true : false;
         }
 
-        public async Task CreateAsync(string question, string answer, Guid categoryId, Guid flashcardId)
+        public async Task CreateAsync(string question, string answer, Guid categoryId, Guid flashcardId, Guid userId)
         {
-            var flashcard = new Flashcard(question, answer, categoryId, flashcardId);
+            var flashcard = new Flashcard(question, answer, categoryId, flashcardId, userId);
             await _flashcardRepository.AddAsync(flashcard);
         }
 

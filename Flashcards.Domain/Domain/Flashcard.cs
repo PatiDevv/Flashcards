@@ -13,7 +13,7 @@ namespace Flashcards.Core.Domain
         public Guid UserId { get; protected set; }
         public int FirstStateTimesAnswer { get; protected set; }
 
-        public Flashcard(string question, string answer, Guid categoryId, Guid flashcardId)
+        public Flashcard(string question, string answer, Guid categoryId, Guid flashcardId, Guid userId)
         {
             Id = flashcardId;
             SetQuestion(question);
@@ -22,6 +22,7 @@ namespace Flashcards.Core.Domain
             State = FlashcardState.FirstState;
             NextStateDate = DateTime.UtcNow;
             CategoryId = categoryId;
+            UserId = userId;
         }
 
         public int CheckAndProcessAnswer(string answer)

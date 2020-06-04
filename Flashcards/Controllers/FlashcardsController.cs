@@ -9,7 +9,7 @@ namespace Flashcards.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class FlashcardsController : ControllerBase
+    public class FlashcardsController : ApiControllerBase
     {
         private readonly IFlashcardService _flashcardService;
 
@@ -27,7 +27,7 @@ namespace Flashcards.Api.Controllers
                 throw new ArgumentException("Paramerets can not be null.");
             }
             command.FlashcardId = Guid.NewGuid();
-            await _flashcardService.CreateAsync(command.Question, command.Answer, command.CategoryId, command.FlashcardId);
+            await _flashcardService.CreateAsync(command.Question, command.Answer, command.CategoryId, command.FlashcardId, UserId);
 
             //location header
             return Created($"/api/flashcard/{command.FlashcardId}", null);
