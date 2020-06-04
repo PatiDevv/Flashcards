@@ -16,8 +16,9 @@ namespace Flashcards.Core.Domain
         {
         }
 
-        public User(string name, string email, string password)
+        public User(Guid id, string name, string email, string password)
         {
+            Id = id;
             SetName(name);
             SetEmail(email);
             SetPassword(password);

@@ -10,6 +10,4 @@ namespace Flashcards.Infrastructure.Initializer
         public static Guid Biology = new Guid("00000000-0000-0000-0000-000000000002");
         public static Guid Physics = new Guid("00000000-0000-0000-0000-000000000003");
     }
-
-
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Flashcards.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class FlashcardsController : ControllerBase
     {
