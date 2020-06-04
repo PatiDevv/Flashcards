@@ -1,4 +1,5 @@
 ﻿using Flashcards.Core.Domain;
+using Flashcards.Infrastructure.Initializer;
 using Flashcards.Infrastructure.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,10 @@ namespace Flashcards.Infrastructure.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
-        private static readonly ISet<Category> _category = new HashSet<Category>();
+        private static readonly ISet<Category> _category = new HashSet<Category>()
+        {
+            new Category("English", CategoryIds.English), new Category("Biology", CategoryIds.Biology), new Category("Physics", CategoryIds.Physics)
+        };
 
         public async Task<Category> GetAsync(Guid id)
         => await Task.FromResult(_category.SingleOrDefault(x => x.Id == id));
