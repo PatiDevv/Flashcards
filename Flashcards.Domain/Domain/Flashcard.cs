@@ -33,32 +33,39 @@ namespace Flashcards.Core.Domain
             if(answer == Answer)
             {
                 int points = 0;
-                NextStateDate = DateTime.UtcNow.AddDays(8);
+                
                 switch (State)
                 {
                     case FlashcardState.FirstState:
                         if (FirstStateTimesAnswer == 2)
                         {
+                            NextStateDate = DateTime.UtcNow.AddDays(1);
                             points = 1;
                             State = FlashcardState.SecondState;
                         }
                         else
+                        {
                             FirstStateTimesAnswer++;
+                        }
                         break;
                     case FlashcardState.SecondState:
                         State = FlashcardState.ThirdStage;
+                        NextStateDate = DateTime.UtcNow.AddDays(8);
                         points = 2;
                         break;
                     case FlashcardState.ThirdStage:
                         State = FlashcardState.FourthStage;
+                        NextStateDate = DateTime.UtcNow.AddDays(8);
                         points = 3;
                         break;
                     case FlashcardState.FourthStage:
                         State = FlashcardState.FifthStage;
+                        NextStateDate = DateTime.UtcNow.AddDays(8);
                         points = 4;
                         break;
                     case FlashcardState.FifthStage:
                         State = FlashcardState.Completed;
+                        NextStateDate = DateTime.UtcNow.AddDays(8);
                         points = 5;
                         break;
                 }
@@ -67,7 +74,6 @@ namespace Flashcards.Core.Domain
             else
             {
                 State = FlashcardState.FirstState;
-                NextStateDate = DateTime.UtcNow.AddDays(1);
                 return -1;
             }
         }
@@ -87,6 +93,7 @@ namespace Flashcards.Core.Domain
             {
                 throw new Exception($"Answer can not be empty.");
             }
+            Answer = answer;
         }
     }
 }
