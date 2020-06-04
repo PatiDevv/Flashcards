@@ -13,6 +13,12 @@ namespace Flashcards.Core.Domain
             SetName(name);
         }
 
+        public Category(string name, Guid categoryId)
+        {
+            SetName(name);
+            Id = categoryId;
+        }
+
         public void SetName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))

@@ -20,7 +20,7 @@ namespace Flashcards.Api.Controllers
         public async Task<IActionResult> Post(string name)
         {
             var id = await _categoryService.CreateAsync(name);
-
+            
             return Created($"/api/Category/{id}", null);
         }
     }
