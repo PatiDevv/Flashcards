@@ -1,5 +1,6 @@
 ﻿using Flashcards.Infrastructure.DTO;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Flashcards.Infrastructure.IServices
@@ -9,5 +10,6 @@ namespace Flashcards.Infrastructure.IServices
         Task<AccountDto> GetAccountAsync(Guid userId);
         Task RegisterAsync(Guid userId, string email, string name, string password);
         Task<TokenDto> LoginAsync(string email, string password);
+        Task<List<PlayerStatisticDto>> GetStatisticsAsync();
     }
 }

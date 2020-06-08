@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Flashcards.Infrastructure.Extensions;
 using NLog;
 using Flashcards.Core.Domain;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Flashcards.Infrastructure.Services
 {
@@ -61,6 +63,12 @@ namespace Flashcards.Infrastructure.Services
                 Token = jwt.Token,
                 Expires = jwt.Expires,
             };
+        }
+
+        public async Task<List<PlayerStatisticDto>> GetStatisticsAsync()
+        {
+            var users = await _userRepository.GetAllAsync();
+            return users.Select(x => new PlayerStatisticDto(x)).ToList();
         }
     }
 }

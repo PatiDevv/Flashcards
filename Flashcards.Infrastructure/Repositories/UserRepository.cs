@@ -17,7 +17,7 @@ namespace Flashcards.Infrastructure.Repositories
 
         public async Task<User> GetAsync(string email)
         
-            => await Task.FromResult(_users.SingleOrDefault(x => x.Email.ToLowerInvariant() == email.ToLowerInvariant()));
+        => await Task.FromResult(_users.SingleOrDefault(x => x.Email.ToLowerInvariant() == email.ToLowerInvariant()));
         
         public async Task AddAsync(User user)
         {
@@ -35,4 +35,7 @@ namespace Flashcards.Infrastructure.Repositories
             _users.Remove(user);
             await Task.CompletedTask;
         }
+
+        public async Task<IEnumerable<User>> GetAllAsync()
+        => await Task.FromResult(_users);
 }   }
