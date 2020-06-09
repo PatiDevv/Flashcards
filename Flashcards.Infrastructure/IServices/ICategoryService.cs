@@ -7,7 +7,7 @@ namespace Flashcards.Infrastructure.IServices
 {
     public interface ICategoryService
     {
-        Task<Guid> CreateAsync(string name);
+        Task<Guid> CreateAsync(string name, Guid UserId);
 
     }
 }

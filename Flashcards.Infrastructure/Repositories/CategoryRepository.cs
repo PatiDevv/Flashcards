@@ -14,8 +14,8 @@ namespace Flashcards.Infrastructure.Repositories
         public async Task<Category> GetAsync(Guid id)
         => await Task.FromResult(_category.SingleOrDefault(x => x.Id == id));
 
-        public async Task<Category> GetAsync(string name)
-        => await Task.FromResult(_category.SingleOrDefault(x => x.Name.ToLowerInvariant() == name.ToLowerInvariant()));
+        public async Task<Category> GetAsync(string name, Guid userId)
+        => await Task.FromResult(_category.SingleOrDefault(x => x.Name.ToLowerInvariant() == name.ToLowerInvariant() && x.UserId == userId));
     
         public async Task<IEnumerable<Category>> GetAllAsync()
         => await Task.FromResult(_category.AsEnumerable());

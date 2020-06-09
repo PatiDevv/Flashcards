@@ -6,7 +6,7 @@ namespace Flashcards.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : ApiControllerBase
     {
         private readonly ICategoryService _categoryService;
 
@@ -19,7 +19,7 @@ namespace Flashcards.Api.Controllers
         [HttpPost("{name}")]
         public async Task<IActionResult> Post(string name)
         {
-            var id = await _categoryService.CreateAsync(name);
+            var id = await _categoryService.CreateAsync(name, UserId);
             
             return Created($"/api/Category/{id}", null);
         }

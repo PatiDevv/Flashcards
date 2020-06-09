@@ -1,22 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Flashcards.Core.Domain
 {
     public class Category : Entity
     {
         public string Name { get; set; }
+        public Guid UserId { get; set; }
 
-        public Category(string name)
+        public Category(string name, Guid userId)
         {
             SetName(name);
+            UserId = userId;
         }
 
-        public Category(string name, Guid categoryId)
+        public Category(string name, Guid categoryId, Guid userId)
         {
             SetName(name);
             Id = categoryId;
+            UserId = userId;
         }
 
         public void SetName(string name)
