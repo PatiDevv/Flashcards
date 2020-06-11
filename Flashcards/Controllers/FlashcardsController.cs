@@ -3,12 +3,14 @@ using System.Threading.Tasks;
 using Flashcards.Infrastructure.Commands.Flashcard;
 using Flashcards.Infrastructure.DTO;
 using Flashcards.Infrastructure.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Flashcards.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class FlashcardsController : ApiControllerBase
     {
         private readonly IFlashcardService _flashcardService;
@@ -36,7 +38,7 @@ namespace Flashcards.Api.Controllers
         [HttpGet]
         public async Task <FlashcardQuestionDto> Get()
         {
-            return await _flashcardService.GetAsync();
+            return await _flashcardService.GetAsync(UserId);
         }
 
         [HttpPut]

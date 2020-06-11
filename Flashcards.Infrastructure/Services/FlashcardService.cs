@@ -37,9 +37,9 @@ namespace Flashcards.Infrastructure.Services
             await _flashcardRepository.AddAsync(flashcard);
         }
 
-        public async Task <FlashcardQuestionDto> GetAsync()
+        public async Task <FlashcardQuestionDto> GetAsync(Guid userId)
         {
-            var flashcards = await _flashcardRepository.BrowseAsync();
+            var flashcards = await _flashcardRepository.BrowseAsync(userId);
 
             var prawdziwaFiszka = flashcards.ToList().OrderBy(x => Guid.NewGuid()).First();
 

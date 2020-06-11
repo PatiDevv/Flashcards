@@ -14,8 +14,8 @@ namespace Flashcards.Infrastructure.Repositories
         public async Task<Flashcard> GetAsync(Guid id)
         => await Task.FromResult(_flashcards.SingleOrDefault(x => x.Id == id));
         
-        public async Task<IEnumerable<Flashcard>> BrowseAsync()
-        => await Task.FromResult(_flashcards.AsEnumerable());
+        public async Task<IEnumerable<Flashcard>> BrowseAsync(Guid userId)
+        => await Task.FromResult(_flashcards.Where(x => x.UserId == userId).AsEnumerable());
         
         public async Task AddAsync(Flashcard flashcard)
         {
