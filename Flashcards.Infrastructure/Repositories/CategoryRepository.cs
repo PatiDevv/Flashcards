@@ -30,6 +30,7 @@ namespace Flashcards.Infrastructure.Repositories
         {
             await Task.CompletedTask;
         }
+
         
         public async  Task DeleteAsync(Category category)
         {

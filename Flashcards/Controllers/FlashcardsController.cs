@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+using Flashcards.Infrastructure.Commands;
 using Flashcards.Infrastructure.Commands.Flashcard;
 using Flashcards.Infrastructure.DTO;
 using Flashcards.Infrastructure.IServices;
@@ -10,7 +12,7 @@ namespace Flashcards.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+   // [Authorize]
     public class FlashcardsController : ApiControllerBase
     {
         private readonly IFlashcardService _flashcardService;
@@ -50,6 +52,13 @@ namespace Flashcards.Api.Controllers
                 return "Poprawna odpowiedź.";
             } 
             return "Zła odpowiedź.";
+        }
+
+        [HttpPut]
+        [Route("copy/userid/{userId}/answer/{categoryId}")]
+        public async Task CopyFlashcardsAsync(Guid userId, Guid categoryId )
+        {
+            await _flashcardService.CopyFlashcardsAsync(UserId, userId, categoryId);
         }
     }
 }

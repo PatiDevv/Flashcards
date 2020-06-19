@@ -1,5 +1,6 @@
 ﻿using Flashcards.Core.Domain;
 using Flashcards.Infrastructure.DTO;
+using Flashcards.Infrastructure.Extensions;
 using Flashcards.Infrastructure.IRepositories;
 using Flashcards.Infrastructure.IServices;
 using System;
@@ -12,10 +13,13 @@ namespace Flashcards.Infrastructure.Services
     public class FlashcardService : IFlashcardService
     {
         private readonly IFlashcardRepository _flashcardRepository;
-
-        public FlashcardService(IFlashcardRepository flashcardRepository)
+        private readonly IUserRepository _userRepository;
+        private readonly ICategoryRepository  _categoryRepository;
+        public FlashcardService(IFlashcardRepository flashcardRepository, IUserRepository userrepository,ICategoryRepository categoryRepository)
         {
             _flashcardRepository = flashcardRepository;
+            _userRepository = userrepository;
+            _categoryRepository = categoryRepository;
         }
 
         public async Task<bool> CheckAnswer(Guid flashcardIds, string answer)
@@ -57,6 +61,24 @@ namespace Flashcards.Infrastructure.Services
             var mixedAnswers = answers.OrderBy(x => Guid.NewGuid()).ToList();
 
             return new FlashcardQuestionDto(prawdziwaFiszka.Id, prawdziwaFiszka.Question, mixedAnswers);
+        }
+
+        public async Task CopyFlashcardsAsync (Guid fromUserId, Guid toUserId, Guid categoryId)
+        {
+            var fiszki = await _flashcardRepository.BrowseAsync(fromUserId, categoryId);
+
+            //var user = await _userRepository.GetOrFailAsync(toUserId);
+
+            var category = await _categoryRepository.GetAsync(categoryId);
+
+            var kopiaKategori = new Category(category.Name, toUserId);
+
+            var kopiaFiszek = fiszki.Select(x => new Flashcard(x.Question, x.Answer, kopiaKategori.Id, Guid.NewGuid(), toUserId));
+
+            await _categoryRepository.AddAsync(category);
+
+            await  _flashcardRepository.AddRangeAsync(kopiaFiszek);
+
         }
     }
 }

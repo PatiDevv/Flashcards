@@ -10,7 +10,10 @@ namespace Flashcards.Infrastructure.IRepositories
     {
         Task<Flashcard> GetAsync(Guid id);
         Task<IEnumerable<Flashcard>> BrowseAsync(Guid userId);
+        Task<IEnumerable<Flashcard>> BrowseAsync(Guid userId, Guid categoryId);
         Task AddAsync(Flashcard flashcard);
+
+        Task AddRangeAsync(IEnumerable<Flashcard> flashcards);
         Task UpdateAsync(Flashcard flashcard);
         Task DeleteAsync(Flashcard flashcard);
     }

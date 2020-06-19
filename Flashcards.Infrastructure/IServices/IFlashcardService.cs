@@ -9,5 +9,6 @@ namespace Flashcards.Infrastructure.IServices
         Task CreateAsync(string question, string answer, Guid categoryId, Guid flashcardId, Guid userId);
         Task<FlashcardQuestionDto> GetAsync(Guid userId);
         Task<bool> CheckAnswer(Guid flashcardIds, string answer);
+        Task CopyFlashcardsAsync(Guid fromUserId, Guid toUserId, Guid categoryId);
     }
 }

@@ -27,6 +27,8 @@ namespace Flashcards.Infrastructure.Services
             return category.Id;
         }
 
+       
+
         //metoda
         // moze byc z modyfikatorem dostepu (public private protected)
         // public ...
