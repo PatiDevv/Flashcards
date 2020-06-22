@@ -13,6 +13,11 @@ namespace Flashcards.Core.Domain
         public Guid UserId { get; protected set; }
         public int FirstStateTimesAnswer { get; protected set; }
 
+        protected Flashcard()
+        {
+
+        }
+
         public Flashcard(string question, string answer, Guid categoryId, Guid flashcardId, Guid userId)
         {
             Id = flashcardId;
