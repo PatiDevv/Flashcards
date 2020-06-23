@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace Flashcards.ConsoleApp
 {
-    public class DapperCategoryRepository : RepositoryConnection
+    public class DapperCategoryRepository : RepositoryConnection, IDapperCategoryRepository
     {
         public DapperCategoryRepository(string connectionString) : base(connectionString)
         {
