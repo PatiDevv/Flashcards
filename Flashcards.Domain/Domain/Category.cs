@@ -19,6 +19,9 @@ namespace Flashcards.Core.Domain
             Id = categoryId;
             UserId = userId;
         }
+        public Category()
+        {
+        }
 
         public void SetName(string name)
         {

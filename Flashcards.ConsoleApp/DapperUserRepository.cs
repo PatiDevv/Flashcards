@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Flashcards.ConsoleApp.Repository;
 using Flashcards.Core.Domain;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,10 @@ using System.Data.SqlClient;
 
 namespace Flashcards.ConsoleApp
 {
-    public class DapperUserRepository : IDapperUserRepository
+    public class DapperUserRepository : RepositoryConnection, IDapperUserRepository
     {
-        private readonly string ConnectionString;
-        public DapperUserRepository(string connectionString)
+        public DapperUserRepository(string connectionString) : base(connectionString)
         {
-            ConnectionString = connectionString;
         }
 
         public IEnumerable<User> GetUsers()

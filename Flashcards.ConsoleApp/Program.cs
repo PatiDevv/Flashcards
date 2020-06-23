@@ -73,9 +73,9 @@ namespace Flashcards.ConsoleApp
             //}
 
 
-            var _userService = new DapperUserRepository(ConnectionString);
+            var _userRepository = new DapperUserRepository(ConnectionString);
 
-            var users = _userService.GetUsers();
+            var users = _userRepository.GetUsers();
 
 
             //foreach (var user in users)
@@ -83,12 +83,23 @@ namespace Flashcards.ConsoleApp
             //    Console.WriteLine($"{user.Id} {user.Name} {user.Email} {user.Password} {user.CreateAt} {user.Points}");
             //}
 
-            var user = _userService.GetUser("user@mail.com");
+            var user = _userRepository.GetUser("user@mail.com");
 
             user.SetName("Patrycja");
 
 
-            _userService.UpdateUser(user);
+            _userRepository.UpdateUser(user);
+
+
+            var _categoryRepository = new DapperCategoryRepository(ConnectionString);
+
+            Guid g = new Guid("A0A4D048-080A-4402-A617-2206B65F42CD");
+            var category = _categoryRepository.GetCategories(g);
+
+            var category2 = _categoryRepository.GetCategory("Angielski", g);
+
+            var deleteCategory = _categoryRepository.DeleteCategory("IT", g);
+            
 
         }
     }
