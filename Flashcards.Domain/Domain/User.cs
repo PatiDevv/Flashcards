@@ -12,7 +12,7 @@ namespace Flashcards.Core.Domain
         public ICollection<Flashcard> Flashcards { get; set; }
         public int Points { get; protected set; }
 
-        protected User()
+        public User()
         {
         }
 
